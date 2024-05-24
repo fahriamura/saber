@@ -44,9 +44,10 @@ def get_nama_from_init_data(init_data):
             data = user_data_dict['first_name']
         if 'last_name' in user_data_dict:
             data = data + " " + user_data_dict['last_name']
-        if 'username' in user_data_dict :
+        if 'username' in user_data_dict:
             data = data + " " + f"({user_data_dict['username']})"
-    return data
+        return data
+    return None
 # Fungsi untuk melakukan login menggunakan initData
 def login_with_initdata(init_data):
     payload = {
@@ -103,7 +104,8 @@ def main():
         time.sleep(0)  # Delay 60 detik sebelum membaca kembali file initData
 
 if __name__ == "__main__":
-    try: 
+    try:
         main()
     except Exception as e:
-        subprocess.run(["python3.10"],["gamee.py"])
+        print(f"An error occurred: {e}")
+        subprocess.run(["python3.10", "gamee.py"])
