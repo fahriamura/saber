@@ -10,8 +10,9 @@ headers = {
     "Accept-Language": "en-US,en;q=0.9",
     "Client-Language": "en",
     "Content-Type": "application/json",
-    "Origin": "https://game.cyberfinance.xyz",
-    "Referer": "https://game.cyberfinance.xyz/",
+    "Origin": "https://g.cyberfin.xyz",
+    "Referer": "https://g.cyberfin.xyz",
+    "Secret-Key": "cyberfinance"
 }
 
 # Fungsi untuk membaca initData dari file
@@ -53,7 +54,7 @@ def login_with_initdata(init_data):
     payload = {
             "initData": init_data
     }
-    response = requests.post("https://api.cyberfinance.xyz/api/v1/game/initdata", json=payload, headers=headers)
+    response = requests.post("https://api.cyberfin.xyz/api/v1/game/initdata", json=payload, headers=headers)
     if response.status_code == 201:
         # Menambahkan header Authorization dari hasil response login
         auth_token = response.json()["message"]["accessToken"]
@@ -64,7 +65,7 @@ def login_with_initdata(init_data):
 
 # Fungsi untuk melakukan start session
 def start_session():
-    response = requests.get('https://api.cyberfinance.xyz/api/v1/mining/claim', headers=headers)
+    response = requests.get('https://api.cyberfin.xyz/api/v1/mining/claim', headers=headers)
     return response
 
 
@@ -79,8 +80,7 @@ def process_initdata(init_data):
          # Start session
         start_response = start_session()
         if start_response.status_code == 200:
-            start_data = start_response.json()
-            print(f"{start_data['userData']}")
+            print("Claim")
         else :
             print('Belum Waktunya Claim')
 
